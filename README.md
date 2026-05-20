@@ -1,57 +1,25 @@
-# arifpurnomo.com
+# purnomoarif.com
 
-Personal website of Arif Purnomo.
+Hi, This is My Personal website. A place to show my profile, projects, and experience in web development.
 
-Pages:
+## Table of Contents
 
-- Work
-- Learn
-- About
+## Pages:
+
+- Home
+- News
 - Contact
 
-## Inspirations
+### News
 
-- [Tyler Galpin](https://www.galp.in)
-- [Aaron Francis](https://aaronfrancis.com)
-- [Dwinawan](https://dwinawan.com)
+### Contact
 
-## Work
+## Links
 
-Skills:
-
-- Figma
-- Markdown
-- VS Code 
-- Terminal
-- Git
-- GitHub
-- HTML
-- CSS
-- JavaScript
-
-
-Testimonials:
-
-> "life is short."
-
-Projects:
-
-- [Project 1](#)
-- [Project 2](#)
-
-## Contact
+- Live Preview : [purnomoarif.com] (https://purnomoarif.com/)
+- Github : <https://github.com/purnomoarif>
 
 Social Media:
 
 - [LinkedIn](https://www.linkedin.com/in/arif-purnomo-653967102/)
 - [Twitter/X](https://x.com/apurnomo28)
-- [GitHub](https://github.com/purnomoarif)
-
-## Notes
-
-- [Article Title 1](#)
-- [Article Title 2](#)
-
-## Screenshots
-
-![Home](home.jpg)

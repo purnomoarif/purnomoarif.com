@@ -1,96 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <title>Arif Purnomo - Fullstack Development</title>
+    <title>Arif Purnomo - Fullstack Web Developer</title>
 
-    <meta
-      name="description"
-      content="personal website showcasing work, learning, and contact information."
-    />
-    <link rel="stylesheet" href="/index.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- DARK MODE -->
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: "#dadbce", // Background utama (Sage Green)
+                dark: "#1e293b", // Background dark mode
+                primary: "#325b3e", // Warna teks/aksen hijau tua
+                primaryDark: "#4ade80", // Aksen hijau terang untuk dark mode
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
   </head>
 
-  <body class="site">
-    <nav class="navigation-links top">
+  <body>
+    <!-- NAVIGATION -->
+    <nav class="text-sm md:text-base font-medium whitespace-nowrap">
       <h1>
-        <span class="name">Arif Purnomo</span>
+        <img src="/images/favicon.png" alt="logo" />
+        <span>Arif Purnomo</span>
       </h1>
-      <ul class="container links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/work">Work</a></li>
-        <li><a href="/learn">Learn</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
+      <ul class="flex flex-row md:flex-col gap-2">
+        <li>
+          <a href="/" class="hover:text-brand-primaryDark transition">Home</a>
+        </li>
+        <li>
+          <a href="/news" class="hover:text-brand-primaryDark transition"
+            >News</a
+          >
+        </li>
+        <li>
+          <a href="/contact" class="hover:text-brand-primaryDark transition"
+            >Contact</a
+          >
+        </li>
       </ul>
     </nav>
 
-    <main class="site-content container space-y">
-      <section class="space-y">
-        <p>
-          Hi, I'm Arif, a software developer who loves working on fullstack
-          development, from frontend to backend.
-        </p>
-        <p>
-          I live in Jakarta with my wife, Dinda, who's always been my biggest
-          supporter, and our two amazing sons whom I love dearly.
-        </p>
-        <p>
-          I'm passionate about learning new things, especially anything related
-          to technology. Outside of coding, I enjoy reading—particularly about
-          motivation and history, which I find both inspiring and enriching.
-        </p>
-      </section>
+    <!-- MAIN CONTENT -->
+    <main>
+      <header>
+        <img src="/images/photo-profile.jpg" alt="photo-profile" />
+        <h2>Arif Purnomo</h2>
+        <h3>Fullstack Web Developer</h3>
+      </header>
 
-      <section class="images-gallery">
-        <img src="images/photo-1.jpg" alt="Photo 1" width="200" height="200" />
-        <img
-          class="photo-2"
-          src="images/photo-2.jpg"
-          alt="Photo 2"
-          width="200"
-          height="200"
-        />
-        <img src="images/photo-3.jpg" alt="Photo 3" width="200" height="200" />
-      </section>
-
-      <section class="tech-stack space-y">
-        <h3>My Tech Stack</h3>
-        <ul class="description">
-          <li class="html">HTML</li>
-          <li class="css">CSS</li>
-          <li class="javascript">JavaScript</li>
-          <li class="typescript">TypeScript</li>
-          <li class="nodejs">Node.js</li>
-          <li class="react">React</li>
-        </ul>
-      </section>
-
-      <section class="connect space-y">
-        <h3>Let's Connect</h3>
-        <p class="end">
-          I'm always open to new opportunities and collaborations. If you want
-          to connect, feel free to reach out via my
-          <a href="mailto:purnomoarifdepok@gmail.com">email</a>.
-          <a href="https://www.linkedin.com/in/arif-purnomo-653967102"
-            >LinkedIn</a
-          >
-          <a href="https://github.com/purnomoarif">GitHub</a>
-        </p>
-      </section>
+      <p>
+        I am a passionate <b>fullstack web developer</b> with expertise in
+        TypeScript and React.
+      </p>
     </main>
 
-    <footer class="footer">
-      <p><b>Arif Purnomo</b> Copyright © 2025</p>
-    </footer>
+    <!-- FOOTER -->
+    <footer>Copyright &copy; 2026 Arif Purnomo | All rights reserved</footer>
+
+    <!-- SCRIPT JS -->
+    <script>
+      src = "script.js";
+    </script>
   </body>
 </html>

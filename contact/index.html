@@ -1,73 +1,276 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Arif Purnomo</title>
-    <link rel="stylesheet" href="/index.css" />
-    <meta
-      name="description"
-      content="personal website showcasing work, learning, and contact information."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+<body
+  class="bg-brand-light dark:bg-brand-dark text-brand-primary dark:text-gray-200 transition-colors duration-300 font-sans flex flex-col min-h-screen relative"
+>
+  <div
+    class="flex flex-col md:flex-row flex-1 max-w-7xl mx-auto w-full relative"
+    class="w-full min-h-screen flex flex-col justify-center items-center text-center"
+  >
+    <section class="absolute top-6 right-6"></section>
 
-  <body class="site">
-    <nav class="navigation-links top">
-      <h1>
-        <span class="name">Arif Purnomo</span>
-      </h1>
-      <ul class="links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/work">Work</a></li>
-        <li><a href="/learn">Learn</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
-      </ul>
-    </nav>
+    <header class="flex justify-between items-center mb-16 md:mb-24">
+      <div class="hidden md:block"></div>
+      <div class="flex items-center gap-4 md:gap-6 relative z-50 ml-auto">
+        <div
+          class="flex items-center gap-2 font-bold text-lg md:text-xl tracking-wider"
+        >
+          <img
+            src="/images/photo-profile.jpg"
+            alt="Photo profile"
+            class="w-[50px] h-[50px] object-cover rounded-full shadow-md"
+          />
 
-    <main class="site-content">
-      <header class="contact-header">
-        <h1>CONTACT</h1>
+          <a href="/">PURNOMO ARIF</a>
+        </div>
+        <button
+          class="bg-brand-primary text-white dark:bg-brand-primaryDark dark:text-gray-900 px-4 py-2 md:px-6 md:py-2 rounded-sm font-medium hover:opacity-90 transition text-sm md:text-base"
+        >
+          <a href="/resume" class="hover:text-brand-primaryDark transition">
+            Resume</a
+          >
+        </button>
+        <button
+          id="theme-toggle"
+          class="p-2 border border-brand-primary dark:border-gray-500 rounded-full hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primaryDark transition flex-shrink-0"
+        >
+          🌓
+        </button>
+      </div>
+    </header>
+
+    <section
+      id="home"
+      class="flex-1 flex flex-col items-center justify-center pt-8"
+    >
+      <div class="text-center mb-12 md:mb-16">
+        <h1
+          class="text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-4 text-brand-primary dark:text-brand-primaryDark"
+        >
+          Fullstack<br />Web Developer
+        </h1>
+        <p class="text-base md:text-xl">Specializing in TypeScript and React</p>
         <p>
-          Get in touch via email, twitter/x, or through this form. be as
-          detailed as you can - let's talk!
+          Hi! I'm Arif. i passionate about learning new things, especially
+          anything related to technology.
         </p>
-      </header>
+        <p>
+          Outside of coding, I enjoy reading particularly about motivation and
+          history, which i find both inspiring and enriching.
+        </p>
+      </div>
 
-      <form
-        action="https://formspree.io/purnomoarifdepok@gmail.com"
-        method="POST"
-        class="contact-form"
+      <div
+        class="w-full max-w-3xl flex flex-col gap-6 mb-12 md:mb-16 px-4 md:px-0 text-left"
       >
-        <div class="form-group">
-          <label for="full-name">Full Name:</label>
-          <input type="text" id="full-name" name="full-name" required />
+        <div class="flex justify-between items-center mb-2">
+          <h2
+            class="text-xl font-bold tracking-tight text-brand-primary dark:text-brand-primaryDark"
+          >
+            Selected projects
+          </h2>
         </div>
 
-        <div class="form-group">
-          <label for="email">Email Address:</label>
-          <input type="email" id="email" name="email" required />
+        <div
+          class="group relative border border-brand-primary/20 dark:border-gray-700 bg-transparent rounded-xl p-6 transition-all duration-300 hover:border-brand-primary dark:hover:border-brand-primaryDark hover:shadow-md cursor-pointer flex justify-between items-center"
+        >
+          <div class="flex flex-col gap-3 pr-8">
+            <span
+              class="text-xs font-semibold tracking-wider opacity-60 uppercase"
+              >Jan 15, 2026</span
+            >
+
+            <h3
+              class="text-xl font-bold tracking-tight text-brand-primary dark:text-gray-100"
+            >
+              ikifurni.com
+            </h3>
+
+            <p class="text-sm opacity-80 leading-relaxed max-w-2xl">
+              An e-commerce platform designed for home furniture shopping,
+              featuring smooth navigation and an intuitive user interface.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-2">
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >A PERSONAL PROJECT</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >FULLSTACK</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >TYPESCRIPT</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >REACT ROUTER</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >BUN</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="text-brand-primary dark:text-brand-primaryDark opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </div>
         </div>
 
-        <div class="form-group">
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="4" required></textarea>
-        </div>
+        <div
+          class="group relative border border-brand-primary/20 dark:border-gray-700 bg-transparent rounded-xl p-6 transition-all duration-300 hover:border-brand-primary dark:hover:border-brand-primaryDark hover:shadow-md cursor-pointer flex justify-between items-center"
+        >
+          <div class="flex flex-col gap-3 pr-8">
+            <span
+              class="text-xs font-semibold tracking-wider opacity-60 uppercase"
+              >Mar 04, 2026</span
+            >
 
-        <div>
-          <button type="submit">Send Message</button>
-        </div>
-      </form>
-    </main>
+            <h3
+              class="text-xl font-bold tracking-tight text-brand-primary dark:text-gray-100"
+            >
+              acaraga.com
+            </h3>
 
-    <footer class="contact-footer">
-      <p><b>Arif Purnomo</b> Copyright © 2025</p>
-    </footer>
-  </body>
-</html>
+            <p class="text-sm opacity-80 leading-relaxed max-w-2xl">
+              A web portal for sports event registration, enabling seamless
+              event discovery, location mapping, and community connections.
+            </p>
+
+            <div class="flex flex-wrap gap-2 mt-2">
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >A PERSONAL PROJECT</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >FULLSTACK</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >TYPESCRIPT</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >REACT JS</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >TAILWIND</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >HONO</span
+              >
+              <span
+                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
+                >PRISMA</span
+              >
+            </div>
+          </div>
+
+          <div
+            class="text-brand-primary dark:text-brand-primaryDark opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        class="w-full max-w-3xl bg-brand-primary dark:bg-gray-800 text-brand-light p-6 md:p-8 rounded-sm shadow-xl relative overflow-hidden group mb-12"
+      >
+        <div
+          class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition duration-500 pointer-events-none"
+        ></div>
+
+        <h3
+          class="text-center text-lg md:text-xl font-semibold mb-6 border-b border-white/20 pb-4"
+        >
+          My Tech Stack
+        </h3>
+
+        <div
+          class="grid grid-cols-2 sm:grid-cols-3 gap-y-6 gap-x-4 text-center font-medium text-sm md:text-base"
+        >
+          <div
+            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
+          >
+            <span class="w-2 h-2 bg-yellow-400 rounded-full"></span>
+            JavaScript
+          </div>
+          <div
+            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
+          >
+            <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+            TypeScript
+          </div>
+          <div
+            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
+          >
+            <span class="w-2 h-2 bg-orange-200 rounded-full"></span> Bun /
+            Node.js
+          </div>
+          <div
+            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
+          >
+            <span class="w-2 h-2 bg-orange-500 rounded-full"></span> Hono
+          </div>
+          <div
+            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
+          >
+            <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+            PostgreSQL
+          </div>
+          <div
+            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
+          >
+            <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Docker
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="border-brand-primary/20 dark:border-gray-700 my-16 md:my-24" />
+  </div>
+
+  <!-- FOOTER -->
+  <footer
+    class="bg-brand-primary dark:bg-gray-900 text-white text-center py-4 md:py-6 border-t border-brand-primary/30 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
+  >
+    <p class="text-sm md:text-base">
+      Copyright &copy; 2026 Arif Purnomo | All rights reserved
+    </p>
+  </footer>
+
+  <!-- SCRIPT JS -->
+  <script src="script.js"></script>
+</body>

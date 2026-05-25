@@ -1,276 +1,639 @@
-<body
-  class="bg-brand-light dark:bg-brand-dark text-brand-primary dark:text-gray-200 transition-colors duration-300 font-sans flex flex-col min-h-screen relative"
->
-  <div
-    class="flex flex-col md:flex-row flex-1 max-w-7xl mx-auto w-full relative"
-    class="w-full min-h-screen flex flex-col justify-center items-center text-center"
-  >
-    <section class="absolute top-6 right-6"></section>
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <header class="flex justify-between items-center mb-16 md:mb-24">
-      <div class="hidden md:block"></div>
-      <div class="flex items-center gap-4 md:gap-6 relative z-50 ml-auto">
+    <title>Contact — Arif Purnomo</title>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: "#f3f4f6",
+                dark: "#111827",
+                primary: "#1f2937",
+                primaryDark: "#4ade80",
+              },
+            },
+            fontFamily: {
+              sans: ["DM Sans", "system-ui", "sans-serif"],
+              mono: ["DM Mono", "monospace"],
+              display: ["DM Serif Display", "Georgia", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/png" />
+
+    <style>
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-up {
+        opacity: 0;
+        animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      .d1 {
+        animation-delay: 0.07s;
+      }
+      .d2 {
+        animation-delay: 0.14s;
+      }
+      .d3 {
+        animation-delay: 0.21s;
+      }
+      .d4 {
+        animation-delay: 0.28s;
+      }
+      .d5 {
+        animation-delay: 0.35s;
+      }
+
+      /* Custom focus ring untuk form inputs */
+      .form-input:focus {
+        outline: none;
+        border-color: #1f2937;
+        box-shadow: 0 0 0 3px rgba(31, 41, 55, 0.12);
+      }
+      .dark .form-input:focus {
+        border-color: #4ade80;
+        box-shadow: 0 0 0 3px rgba(74, 222, 128, 0.15);
+      }
+
+      /* Submit button loading state */
+      .btn-submit:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      /* Status messages */
+      #form-success,
+      #form-error {
+        display: none;
+      }
+      #form-success.show,
+      #form-error.show {
+        display: flex;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-brand-light dark:bg-brand-dark text-brand-primary dark:text-gray-200 transition-colors duration-300 font-sans flex flex-col min-h-screen relative"
+  >
+    <div
+      class="flex flex-col flex-1 max-w-7xl mx-auto w-full relative px-6 md:px-12 py-8 min-h-screen"
+    >
+      <!-- ── Header ── -->
+      <header
+        class="flex flex-col md:flex-row justify-between items-center mb-16 md:mb-24 w-full gap-6 md:gap-0"
+      >
+        <!-- Brand -->
         <div
-          class="flex items-center gap-2 font-bold text-lg md:text-xl tracking-wider"
+          class="flex items-center gap-3 font-bold text-lg md:text-xl tracking-wider"
         >
           <img
+            id="headerAvatar"
             src="/images/photo-profile.jpg"
             alt="Photo profile"
             class="w-[50px] h-[50px] object-cover rounded-full shadow-md"
           />
-
-          <a href="/">PURNOMO ARIF</a>
-        </div>
-        <button
-          class="bg-brand-primary text-white dark:bg-brand-primaryDark dark:text-gray-900 px-4 py-2 md:px-6 md:py-2 rounded-sm font-medium hover:opacity-90 transition text-sm md:text-base"
-        >
-          <a href="/resume" class="hover:text-brand-primaryDark transition">
-            Resume</a
+          <a
+            href="/"
+            class="hover:text-brand-primary dark:hover:text-brand-primaryDark transition"
+            >PURNOMO ARIF</a
           >
-        </button>
-        <button
-          id="theme-toggle"
-          class="p-2 border border-brand-primary dark:border-gray-500 rounded-full hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primaryDark transition flex-shrink-0"
-        >
-          🌓
-        </button>
-      </div>
-    </header>
+        </div>
 
-    <section
-      id="home"
-      class="flex-1 flex flex-col items-center justify-center pt-8"
+        <!-- Nav links -->
+        <nav>
+          <ul
+            class="flex flex-wrap justify-center gap-4 md:gap-6 text-sm md:text-base font-medium"
+          >
+            <li>
+              <a
+                href="/"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/about"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="/news"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >News</a
+              >
+            </li>
+            <li>
+              <a
+                href="/contact"
+                class="text-brand-primary dark:text-brand-primaryDark font-semibold border-b-2 border-brand-primary dark:border-brand-primaryDark pb-0.5"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <!-- Actions -->
+        <div class="flex items-center gap-4 relative z-50">
+          <a
+            href="/resume"
+            class="bg-brand-primary text-white dark:bg-brand-primaryDark dark:text-gray-900 px-4 py-2 md:px-6 md:py-2 rounded-sm font-medium hover:opacity-90 transition text-sm md:text-base"
+            >Resume</a
+          >
+
+          <button
+            id="theme-toggle"
+            class="p-2 border border-brand-primary dark:border-gray-500 rounded-full hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primaryDark dark:hover:text-gray-900 transition flex-shrink-0 flex items-center justify-center w-10 h-10"
+            aria-label="Toggle Dark Mode"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              class="hidden w-5 h-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              />
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              class="hidden w-5 h-5 text-gray-900 dark:text-gray-100"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ── Contact section ── -->
+      <section
+        class="flex-1 flex flex-col items-center justify-center w-full pb-16"
+      >
+        <!-- Heading -->
+        <div class="text-center mb-12 max-w-xl w-full">
+          <p
+            class="fade-up font-mono text-xs tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-3"
+          >
+            Get in touch
+          </p>
+          <h1
+            class="fade-up d1 font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-brand-primary dark:text-brand-primaryDark mb-4"
+          >
+            Let's work<br /><em class="italic">together.</em>
+          </h1>
+          <p
+            class="fade-up d2 text-sm md:text-base text-gray-500 dark:text-gray-400 leading-relaxed"
+          >
+            Have a project in mind, a question, or just want to say hi? Fill in
+            the form below or reach me directly via email.
+          </p>
+        </div>
+
+        <div class="w-full max-w-3xl grid md:grid-cols-5 gap-8 md:gap-12">
+          <!-- ── Contact form (3/5) ── -->
+          <div class="md:col-span-3 fade-up d3">
+            <form id="contact-form" novalidate>
+              <div class="flex flex-col gap-5">
+                <!-- Name -->
+                <div>
+                  <label
+                    for="name"
+                    class="block text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2"
+                  >
+                    Full Name <span class="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Arif Purnomo"
+                    required
+                    class="form-input w-full px-4 py-3 rounded-lg border border-brand-primary/20 dark:border-gray-700 bg-white dark:bg-gray-800 text-brand-primary dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-600 text-sm transition-colors duration-200"
+                  />
+                  <p class="field-error hidden text-xs text-red-400 mt-1.5">
+                    Please enter your name.
+                  </p>
+                </div>
+
+                <!-- Email -->
+                <div>
+                  <label
+                    for="email"
+                    class="block text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2"
+                  >
+                    Email Address <span class="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="you@example.com"
+                    required
+                    class="form-input w-full px-4 py-3 rounded-lg border border-brand-primary/20 dark:border-gray-700 bg-white dark:bg-gray-800 text-brand-primary dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-600 text-sm transition-colors duration-200"
+                  />
+                  <p class="field-error hidden text-xs text-red-400 mt-1.5">
+                    Please enter a valid email.
+                  </p>
+                </div>
+
+                <!-- Subject -->
+                <div>
+                  <label
+                    for="subject"
+                    class="block text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2"
+                  >
+                    Subject
+                  </label>
+                  <input
+                    id="subject"
+                    name="subject"
+                    type="text"
+                    placeholder="Project inquiry, collaboration, etc."
+                    class="form-input w-full px-4 py-3 rounded-lg border border-brand-primary/20 dark:border-gray-700 bg-white dark:bg-gray-800 text-brand-primary dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-600 text-sm transition-colors duration-200"
+                  />
+                </div>
+
+                <!-- Message -->
+                <div>
+                  <label
+                    for="message"
+                    class="block text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2"
+                  >
+                    Message <span class="text-red-400">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    placeholder="Tell me about your project or what you have in mind..."
+                    required
+                    class="form-input w-full px-4 py-3 rounded-lg border border-brand-primary/20 dark:border-gray-700 bg-white dark:bg-gray-800 text-brand-primary dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-600 text-sm transition-colors duration-200 resize-none"
+                  ></textarea>
+                  <p class="field-error hidden text-xs text-red-400 mt-1.5">
+                    Please enter a message.
+                  </p>
+                </div>
+
+                <!-- Submit -->
+                <button
+                  id="submit-btn"
+                  type="submit"
+                  class="btn-submit w-full bg-brand-primary dark:bg-brand-primaryDark text-white dark:text-gray-900 font-semibold py-3 px-6 rounded-lg hover:opacity-90 active:scale-[.98] transition-all duration-200 flex items-center justify-center gap-2 text-sm"
+                >
+                  <span id="btn-label">Send Message</span>
+                  <!-- Spinner (hidden by default) -->
+                  <svg
+                    id="btn-spinner"
+                    class="hidden w-4 h-4 animate-spin"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      class="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      stroke-width="4"
+                    />
+                    <path
+                      class="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8v8H4z"
+                    />
+                  </svg>
+                </button>
+
+                <!-- Success message -->
+                <div
+                  id="form-success"
+                  class="items-center gap-3 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 text-green-700 dark:text-green-400 rounded-lg px-4 py-3 text-sm"
+                >
+                  <svg
+                    class="w-5 h-5 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span
+                    >Message sent! I'll get back to you as soon as
+                    possible.</span
+                  >
+                </div>
+
+                <!-- Error message -->
+                <div
+                  id="form-error"
+                  class="items-center gap-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 rounded-lg px-4 py-3 text-sm"
+                >
+                  <svg
+                    class="w-5 h-5 flex-shrink-0"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <span
+                    >Something went wrong. Please try again or email me
+                    directly.</span
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <!-- ── Sidebar info (2/5) ── -->
+          <div class="md:col-span-2 flex flex-col gap-6 fade-up d4">
+            <!-- Direct contact -->
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4"
+              >
+                Direct contact
+              </p>
+              <div class="flex flex-col gap-3">
+                <a
+                  href="https://linkedin.com/in/arif-purnomo-653967102"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 text-sm text-brand-primary dark:text-gray-300 hover:text-brand-primaryDark dark:hover:text-brand-primaryDark transition"
+                >
+                  <span
+                    class="w-8 h-8 flex items-center justify-center rounded-lg border border-brand-primary/20 dark:border-gray-700 bg-white dark:bg-gray-800 group-hover:border-brand-primaryDark transition flex-shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                      />
+                    </svg>
+                  </span>
+                  linkedin.com/in/arifpurnomo
+                </a>
+
+                <a
+                  href="https://github.com/PurnomoArif"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 text-sm text-brand-primary dark:text-gray-300 hover:text-brand-primaryDark dark:hover:text-brand-primaryDark transition"
+                >
+                  <span
+                    class="w-8 h-8 flex items-center justify-center rounded-lg border border-brand-primary/20 dark:border-gray-700 bg-white dark:bg-gray-800 group-hover:border-brand-primaryDark transition flex-shrink-0"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+                      />
+                    </svg>
+                  </span>
+                  github.com/purnomoarif
+                </a>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="border-brand-primary/10 dark:border-gray-700" />
+
+            <!-- Availability -->
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4"
+              >
+                Availability
+              </p>
+              <div class="flex items-start gap-3">
+                <span
+                  class="mt-1 w-2.5 h-2.5 rounded-full bg-green-400 flex-shrink-0 shadow-[0_0_6px_2px_rgba(74,222,128,.4)]"
+                ></span>
+                <p
+                  class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed"
+                >
+                  Currently open to fullstack and frontend opportunities —
+                  remote friendly.
+                </p>
+              </div>
+            </div>
+
+            <!-- Divider -->
+            <hr class="border-brand-primary/10 dark:border-gray-700" />
+
+            <!-- Response time -->
+            <div>
+              <p
+                class="text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-4"
+              >
+                Response time
+              </p>
+              <p
+                class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed"
+              >
+                I typically reply within
+                <span
+                  class="font-semibold text-brand-primary dark:text-gray-300"
+                  >1–2 business days</span
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr
+        class="border-brand-primary/20 dark:border-gray-700 mb-16 md:mb-24 w-full"
+      />
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer
+      class="bg-brand-primary dark:bg-gray-900 text-white text-center py-4 md:py-6 border-t border-brand-primary/30 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] mt-auto"
     >
-      <div class="text-center mb-12 md:mb-16">
-        <h1
-          class="text-4xl sm:text-5xl md:text-7xl font-bold uppercase tracking-tighter mb-4 text-brand-primary dark:text-brand-primaryDark"
-        >
-          Fullstack<br />Web Developer
-        </h1>
-        <p class="text-base md:text-xl">Specializing in TypeScript and React</p>
-        <p>
-          Hi! I'm Arif. i passionate about learning new things, especially
-          anything related to technology.
-        </p>
-        <p>
-          Outside of coding, I enjoy reading particularly about motivation and
-          history, which i find both inspiring and enriching.
-        </p>
-      </div>
+      <p class="text-sm md:text-base">
+        Copyright &copy; 2026 Arif Purnomo | All rights reserved
+      </p>
+    </footer>
 
-      <div
-        class="w-full max-w-3xl flex flex-col gap-6 mb-12 md:mb-16 px-4 md:px-0 text-left"
-      >
-        <div class="flex justify-between items-center mb-2">
-          <h2
-            class="text-xl font-bold tracking-tight text-brand-primary dark:text-brand-primaryDark"
-          >
-            Selected projects
-          </h2>
-        </div>
+    <script>
+      // ── Dark mode ─────────────────────────────────────────────
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("theme-toggle");
+      const darkIcon = document.getElementById("theme-toggle-dark-icon");
+      const lightIcon = document.getElementById("theme-toggle-light-icon");
+      const KEY = "theme";
 
-        <div
-          class="group relative border border-brand-primary/20 dark:border-gray-700 bg-transparent rounded-xl p-6 transition-all duration-300 hover:border-brand-primary dark:hover:border-brand-primaryDark hover:shadow-md cursor-pointer flex justify-between items-center"
-        >
-          <div class="flex flex-col gap-3 pr-8">
-            <span
-              class="text-xs font-semibold tracking-wider opacity-60 uppercase"
-              >Jan 15, 2026</span
-            >
+      function applyTheme(isDark) {
+        if (isDark) {
+          html.classList.add("dark");
+          darkIcon.classList.remove("hidden");
+          lightIcon.classList.add("hidden");
+        } else {
+          html.classList.remove("dark");
+          lightIcon.classList.remove("hidden");
+          darkIcon.classList.add("hidden");
+        }
+      }
 
-            <h3
-              class="text-xl font-bold tracking-tight text-brand-primary dark:text-gray-100"
-            >
-              ikifurni.com
-            </h3>
+      const saved = localStorage.getItem(KEY);
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      applyTheme(saved === "dark" || (!saved && prefersDark));
 
-            <p class="text-sm opacity-80 leading-relaxed max-w-2xl">
-              An e-commerce platform designed for home furniture shopping,
-              featuring smooth navigation and an intuitive user interface.
-            </p>
+      toggleBtn.addEventListener("click", () => {
+        const isDark = html.classList.contains("dark");
+        applyTheme(!isDark);
+        localStorage.setItem(KEY, !isDark ? "dark" : "light");
+      });
 
-            <div class="flex flex-wrap gap-2 mt-2">
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >A PERSONAL PROJECT</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >FULLSTACK</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >TYPESCRIPT</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >REACT ROUTER</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >BUN</span
-              >
-            </div>
-          </div>
+      // ── Avatar fallback ───────────────────────────────────────
+      const avatar = document.getElementById("headerAvatar");
+      avatar.addEventListener("error", () => {
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+          <rect width="50" height="50" rx="25" fill="#1f2937"/>
+          <text x="25" y="26" font-family="sans-serif" font-size="17" font-weight="600"
+            fill="white" text-anchor="middle" dominant-baseline="middle">AP</text>
+        </svg>`;
+        avatar.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+        avatar.onerror = null;
+      });
 
-          <div
-            class="text-brand-primary dark:text-brand-primaryDark opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2.5"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </div>
-        </div>
+      // ── Form validation & submit ──────────────────────────────
+      const form = document.getElementById("contact-form");
+      const submitBtn = document.getElementById("submit-btn");
+      const btnLabel = document.getElementById("btn-label");
+      const btnSpinner = document.getElementById("btn-spinner");
+      const successMsg = document.getElementById("form-success");
+      const errorMsg = document.getElementById("form-error");
 
-        <div
-          class="group relative border border-brand-primary/20 dark:border-gray-700 bg-transparent rounded-xl p-6 transition-all duration-300 hover:border-brand-primary dark:hover:border-brand-primaryDark hover:shadow-md cursor-pointer flex justify-between items-center"
-        >
-          <div class="flex flex-col gap-3 pr-8">
-            <span
-              class="text-xs font-semibold tracking-wider opacity-60 uppercase"
-              >Mar 04, 2026</span
-            >
+      // Validate a single field
+      function validateField(field) {
+        const errorEl = field.closest("div").querySelector(".field-error");
+        let valid = true;
 
-            <h3
-              class="text-xl font-bold tracking-tight text-brand-primary dark:text-gray-100"
-            >
-              acaraga.com
-            </h3>
+        if (field.hasAttribute("required") && !field.value.trim()) {
+          valid = false;
+        }
+        if (field.type === "email" && field.value.trim()) {
+          valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field.value.trim());
+        }
 
-            <p class="text-sm opacity-80 leading-relaxed max-w-2xl">
-              A web portal for sports event registration, enabling seamless
-              event discovery, location mapping, and community connections.
-            </p>
+        if (!valid) {
+          field.classList.add("border-red-400", "dark:border-red-500");
+          errorEl?.classList.remove("hidden");
+        } else {
+          field.classList.remove("border-red-400", "dark:border-red-500");
+          errorEl?.classList.add("hidden");
+        }
+        return valid;
+      }
 
-            <div class="flex flex-wrap gap-2 mt-2">
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >A PERSONAL PROJECT</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >FULLSTACK</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >TYPESCRIPT</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >REACT JS</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >TAILWIND</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >HONO</span
-              >
-              <span
-                class="px-2 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider bg-brand-primary/10 text-brand-primary dark:bg-gray-800 dark:text-gray-300 rounded"
-                >PRISMA</span
-              >
-            </div>
-          </div>
+      // Validate on blur for real-time feedback
+      form.querySelectorAll("input, textarea").forEach((field) => {
+        field.addEventListener("blur", () => validateField(field));
+        field.addEventListener("input", () => {
+          if (field.classList.contains("border-red-400")) validateField(field);
+        });
+      });
 
-          <div
-            class="text-brand-primary dark:text-brand-primaryDark opacity-60 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="2.5"
-              stroke="currentColor"
-              class="w-5 h-5"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-      <div
-        class="w-full max-w-3xl bg-brand-primary dark:bg-gray-800 text-brand-light p-6 md:p-8 rounded-sm shadow-xl relative overflow-hidden group mb-12"
-      >
-        <div
-          class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-white/10 rounded-full blur-2xl group-hover:bg-white/20 transition duration-500 pointer-events-none"
-        ></div>
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-        <h3
-          class="text-center text-lg md:text-xl font-semibold mb-6 border-b border-white/20 pb-4"
-        >
-          My Tech Stack
-        </h3>
+        // Validate all required fields
+        const fields = [
+          ...form.querySelectorAll("input[required], textarea[required]"),
+        ];
+        const allValid = fields.map(validateField).every(Boolean);
+        if (!allValid) return;
 
-        <div
-          class="grid grid-cols-2 sm:grid-cols-3 gap-y-6 gap-x-4 text-center font-medium text-sm md:text-base"
-        >
-          <div
-            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
-          >
-            <span class="w-2 h-2 bg-yellow-400 rounded-full"></span>
-            JavaScript
-          </div>
-          <div
-            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
-          >
-            <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
-            TypeScript
-          </div>
-          <div
-            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
-          >
-            <span class="w-2 h-2 bg-orange-200 rounded-full"></span> Bun /
-            Node.js
-          </div>
-          <div
-            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
-          >
-            <span class="w-2 h-2 bg-orange-500 rounded-full"></span> Hono
-          </div>
-          <div
-            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
-          >
-            <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
-            PostgreSQL
-          </div>
-          <div
-            class="flex items-center justify-center gap-2 hover:text-green-300 transition cursor-default"
-          >
-            <span class="w-2 h-2 bg-blue-500 rounded-full"></span> Docker
-          </div>
-        </div>
-      </div>
-    </section>
+        // Loading state
+        submitBtn.disabled = true;
+        btnLabel.textContent = "Sending…";
+        btnSpinner.classList.remove("hidden");
+        successMsg.classList.remove("show");
+        errorMsg.classList.remove("show");
 
-    <hr class="border-brand-primary/20 dark:border-gray-700 my-16 md:my-24" />
-  </div>
+        try {
+          // ── Ganti URL di bawah dengan endpoint form Anda ──────
+          // Contoh: Formspree  → "https://formspree.io/f/YOUR_ID"
+          //         EmailJS    → gunakan emailjs.send()
+          //         API sendiri → "/api/contact"
+          //
+          // Untuk sementara, simulasi delay 1.5 detik:
+          await new Promise((resolve) => setTimeout(resolve, 1500));
 
-  <!-- FOOTER -->
-  <footer
-    class="bg-brand-primary dark:bg-gray-900 text-white text-center py-4 md:py-6 border-t border-brand-primary/30 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
-  >
-    <p class="text-sm md:text-base">
-      Copyright &copy; 2026 Arif Purnomo | All rights reserved
-    </p>
-  </footer>
+          // Simulasi sukses — hapus baris ini jika sudah pakai real endpoint
+          const simulateSuccess = true;
 
-  <!-- SCRIPT JS -->
-  <script src="script.js"></script>
-</body>
+          if (simulateSuccess) {
+            successMsg.classList.add("show");
+            form.reset();
+          } else {
+            throw new Error("Server error");
+          }
+        } catch {
+          errorMsg.classList.add("show");
+        } finally {
+          submitBtn.disabled = false;
+          btnLabel.textContent = "Send Message";
+          btnSpinner.classList.add("hidden");
+        }
+      });
+    </script>
+  </body>
+</html>

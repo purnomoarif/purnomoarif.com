@@ -1,12 +1,685 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Page News</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>News — Arif Purnomo</title>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: "#f3f4f6",
+                dark: "#111827",
+                primary: "#1f2937",
+                primaryDark: "#4ade80",
+              },
+            },
+            fontFamily: {
+              sans: ["DM Sans", "system-ui", "sans-serif"],
+              mono: ["DM Mono", "monospace"],
+              display: ["DM Serif Display", "Georgia", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/png" />
+
+    <style>
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-up {
+        opacity: 0;
+        animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      .d1 {
+        animation-delay: 0.07s;
+      }
+      .d2 {
+        animation-delay: 0.14s;
+      }
+      .d3 {
+        animation-delay: 0.21s;
+      }
+      .d4 {
+        animation-delay: 0.28s;
+      }
+      .d5 {
+        animation-delay: 0.35s;
+      }
+      .d6 {
+        animation-delay: 0.42s;
+      }
+
+      /* Filter chip active state */
+      .chip.active {
+        background-color: #1f2937;
+        color: #f3f4f6;
+        border-color: #1f2937;
+      }
+      .dark .chip.active {
+        background-color: #4ade80;
+        color: #111827;
+        border-color: #4ade80;
+      }
+
+      /* Article card hover line */
+      .article-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: #1f2937;
+        border-radius: 3px 0 0 3px;
+        transform: scaleY(0);
+        transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-origin: bottom;
+      }
+      .dark .article-card::before {
+        background: #4ade80;
+      }
+      .article-card:hover::before {
+        transform: scaleY(1);
+      }
+
+      /* Hidden articles for filter */
+      .article-item.hidden {
+        display: none;
+      }
+    </style>
   </head>
-  <body>
-    <h1>Page News</h1>
-    <p>Welcome to the news page!</p>
+
+  <body
+    class="bg-brand-light dark:bg-brand-dark text-brand-primary dark:text-gray-200 transition-colors duration-300 font-sans flex flex-col min-h-screen"
+  >
+    <div
+      class="flex flex-col flex-1 max-w-7xl mx-auto w-full px-6 md:px-12 py-8 min-h-screen"
+    >
+      <!-- ── Header ── -->
+      <header
+        class="flex flex-col md:flex-row justify-between items-center mb-16 md:mb-24 w-full gap-6 md:gap-0"
+      >
+        <div
+          class="flex items-center gap-3 font-bold text-lg md:text-xl tracking-wider"
+        >
+          <img
+            id="headerAvatar"
+            src="/images/photo-profile.jpg"
+            alt="Photo profile"
+            class="w-[50px] h-[50px] object-cover rounded-full shadow-md"
+          />
+          <a
+            href="/"
+            class="hover:text-brand-primary dark:hover:text-brand-primaryDark transition"
+          >
+            PURNOMO ARIF
+          </a>
+        </div>
+
+        <nav>
+          <ul
+            class="flex flex-wrap justify-center gap-4 md:gap-6 text-sm md:text-base font-medium"
+          >
+            <li>
+              <a
+                href="/"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/about"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="/news"
+                class="text-brand-primary dark:text-brand-primaryDark font-semibold border-b-2 border-brand-primary dark:border-brand-primaryDark pb-0.5"
+              >
+                News
+              </a>
+            </li>
+            <li>
+              <a
+                href="/contact"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="flex items-center gap-4 relative z-50">
+          <a
+            href="/resume"
+            class="bg-brand-primary text-white dark:bg-brand-primaryDark dark:text-gray-900 px-4 py-2 md:px-6 md:py-2 rounded-sm font-medium hover:opacity-90 transition text-sm md:text-base"
+            >Resume</a
+          >
+
+          <button
+            id="theme-toggle"
+            class="p-2 border border-brand-primary dark:border-gray-500 rounded-full hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primaryDark dark:hover:text-gray-900 transition flex-shrink-0 flex items-center justify-center w-10 h-10"
+            aria-label="Toggle Dark Mode"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              class="hidden w-5 h-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              />
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              class="hidden w-5 h-5 text-gray-900 dark:text-gray-100"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ── Page heading ── -->
+      <div class="mb-10 max-w-2xl">
+        <p
+          class="fade-up font-mono text-xs tracking-widest uppercase text-gray-400 dark:text-gray-500 mb-3"
+        >
+          Writing
+        </p>
+        <h1
+          class="fade-up d1 font-display text-4xl sm:text-5xl font-bold tracking-tight text-brand-primary dark:text-brand-primaryDark mb-4"
+        >
+          News &amp; <em class="italic">Articles</em>
+        </h1>
+        <p
+          class="fade-up d2 text-sm md:text-base text-gray-500 dark:text-gray-400 leading-relaxed"
+        >
+          Notes on web development, TypeScript patterns, and things I learn
+          along the way.
+        </p>
+      </div>
+
+      <!-- ── Filter chips ── -->
+      <div class="fade-up d3 flex flex-wrap gap-2 mb-10" id="filterRow">
+        <button
+          class="chip active text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full border border-brand-primary/30 dark:border-gray-600 bg-transparent text-brand-primary dark:text-gray-300 hover:border-brand-primary dark:hover:border-brand-primaryDark transition cursor-pointer"
+          data-filter="all"
+        >
+          All
+        </button>
+        <button
+          class="chip text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full border border-brand-primary/30 dark:border-gray-600 bg-transparent text-brand-primary dark:text-gray-300 hover:border-brand-primary dark:hover:border-brand-primaryDark transition cursor-pointer"
+          data-filter="typescript"
+        >
+          TypeScript
+        </button>
+        <button
+          class="chip text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full border border-brand-primary/30 dark:border-gray-600 bg-transparent text-brand-primary dark:text-gray-300 hover:border-brand-primary dark:hover:border-brand-primaryDark transition cursor-pointer"
+          data-filter="backend"
+        >
+          Backend
+        </button>
+        <button
+          class="chip text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full border border-brand-primary/30 dark:border-gray-600 bg-transparent text-brand-primary dark:text-gray-300 hover:border-brand-primary dark:hover:border-brand-primaryDark transition cursor-pointer"
+          data-filter="frontend"
+        >
+          Frontend
+        </button>
+        <button
+          class="chip text-xs font-semibold uppercase tracking-wider px-4 py-1.5 rounded-full border border-brand-primary/30 dark:border-gray-600 bg-transparent text-brand-primary dark:text-gray-300 hover:border-brand-primary dark:hover:border-brand-primaryDark transition cursor-pointer"
+          data-filter="devlog"
+        >
+          Devlog
+        </button>
+      </div>
+
+      <!-- ── Article list ── -->
+      <div class="flex flex-col gap-0 max-w-3xl" id="articleList">
+        <!-- Article 1 -->
+        <div class="article-item fade-up d3" data-category="typescript">
+          <a
+            href="#"
+            class="article-card relative flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-7 border-b border-brand-primary/10 dark:border-gray-800 hover:bg-brand-primary/[0.02] dark:hover:bg-white/[0.02] transition-colors duration-200 pl-5 -ml-5 rounded-r-lg"
+          >
+            <div
+              class="flex-shrink-0 font-mono text-xs text-gray-400 dark:text-gray-600 w-28 pt-1"
+            >
+              May 20, 2026
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-brand-primary/60 dark:text-gray-500 bg-brand-primary/5 dark:bg-gray-800 px-2 py-0.5 rounded"
+                  >TypeScript</span
+                >
+              </div>
+              <h2
+                class="text-base md:text-lg font-semibold text-brand-primary dark:text-gray-100 mb-1 leading-snug group-hover:underline"
+              >
+                Why I Chose Hono Over Express for My API
+              </h2>
+              <p
+                class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2"
+              >
+                After building two projects with Hono on Bun runtime, here's why
+                I think it's a better choice for TypeScript-first backends —
+                faster cold starts, cleaner type inference, and a more intuitive
+                routing API.
+              </p>
+            </div>
+            <div
+              class="hidden md:flex items-center self-center text-brand-primary/30 dark:text-gray-700 flex-shrink-0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="article-item fade-up d4" data-category="devlog">
+          <a
+            href="#"
+            class="article-card relative flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-7 border-b border-brand-primary/10 dark:border-gray-800 hover:bg-brand-primary/[0.02] dark:hover:bg-white/[0.02] transition-colors duration-200 pl-5 -ml-5 rounded-r-lg"
+          >
+            <div
+              class="flex-shrink-0 font-mono text-xs text-gray-400 dark:text-gray-600 w-28 pt-1"
+            >
+              Apr 12, 2026
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-brand-primary/60 dark:text-gray-500 bg-brand-primary/5 dark:bg-gray-800 px-2 py-0.5 rounded"
+                  >Devlog</span
+                >
+              </div>
+              <h2
+                class="text-base md:text-lg font-semibold text-brand-primary dark:text-gray-100 mb-1 leading-snug"
+              >
+                Building Acaraga: What I Learned From My First Team Project
+              </h2>
+              <p
+                class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2"
+              >
+                Working in a group of four on a sports event platform taught me
+                more about communication and Git workflow than any solo project
+                ever could. Here's what went well, what broke, and what I'd do
+                differently.
+              </p>
+            </div>
+            <div
+              class="hidden md:flex items-center self-center text-brand-primary/30 dark:text-gray-700 flex-shrink-0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="article-item fade-up d5" data-category="backend">
+          <a
+            href="#"
+            class="article-card relative flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-7 border-b border-brand-primary/10 dark:border-gray-800 hover:bg-brand-primary/[0.02] dark:hover:bg-white/[0.02] transition-colors duration-200 pl-5 -ml-5 rounded-r-lg"
+          >
+            <div
+              class="flex-shrink-0 font-mono text-xs text-gray-400 dark:text-gray-600 w-28 pt-1"
+            >
+              Mar 28, 2026
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-brand-primary/60 dark:text-gray-500 bg-brand-primary/5 dark:bg-gray-800 px-2 py-0.5 rounded"
+                  >Backend</span
+                >
+              </div>
+              <h2
+                class="text-base md:text-lg font-semibold text-brand-primary dark:text-gray-100 mb-1 leading-snug"
+              >
+                Understanding N+1 Queries in Prisma (And How to Fix Them)
+              </h2>
+              <p
+                class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2"
+              >
+                I didn't notice the N+1 problem until my product listing page
+                started slowing down with only 50 items. Here's how I found it
+                using query logs and fixed it with Prisma's include directive.
+              </p>
+            </div>
+            <div
+              class="hidden md:flex items-center self-center text-brand-primary/30 dark:text-gray-700 flex-shrink-0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Article 4 -->
+        <div class="article-item fade-up d5" data-category="typescript">
+          <a
+            href="#"
+            class="article-card relative flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-7 border-b border-brand-primary/10 dark:border-gray-800 hover:bg-brand-primary/[0.02] dark:hover:bg-white/[0.02] transition-colors duration-200 pl-5 -ml-5 rounded-r-lg"
+          >
+            <div
+              class="flex-shrink-0 font-mono text-xs text-gray-400 dark:text-gray-600 w-28 pt-1"
+            >
+              Mar 10, 2026
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-brand-primary/60 dark:text-gray-500 bg-brand-primary/5 dark:bg-gray-800 px-2 py-0.5 rounded"
+                  >TypeScript</span
+                >
+              </div>
+              <h2
+                class="text-base md:text-lg font-semibold text-brand-primary dark:text-gray-100 mb-1 leading-snug"
+              >
+                TypeScript Utility Types I Use Every Day
+              </h2>
+              <p
+                class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2"
+              >
+                Partial, Pick, Omit, ReturnType — these four utility types alone
+                have saved me hours of writing redundant type definitions. A
+                practical walkthrough with real examples from my projects.
+              </p>
+            </div>
+            <div
+              class="hidden md:flex items-center self-center text-brand-primary/30 dark:text-gray-700 flex-shrink-0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Article 5 -->
+        <div class="article-item fade-up d6" data-category="frontend">
+          <a
+            href="#"
+            class="article-card relative flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-7 border-b border-brand-primary/10 dark:border-gray-800 hover:bg-brand-primary/[0.02] dark:hover:bg-white/[0.02] transition-colors duration-200 pl-5 -ml-5 rounded-r-lg"
+          >
+            <div
+              class="flex-shrink-0 font-mono text-xs text-gray-400 dark:text-gray-600 w-28 pt-1"
+            >
+              Feb 22, 2026
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-brand-primary/60 dark:text-gray-500 bg-brand-primary/5 dark:bg-gray-800 px-2 py-0.5 rounded"
+                  >Frontend</span
+                >
+              </div>
+              <h2
+                class="text-base md:text-lg font-semibold text-brand-primary dark:text-gray-100 mb-1 leading-snug"
+              >
+                Dark Mode Done Right: localStorage + prefers-color-scheme
+              </h2>
+              <p
+                class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2"
+              >
+                Most dark mode tutorials only show one half of the story. Here's
+                how to combine user preference storage with OS-level detection
+                so your toggle actually works the way people expect.
+              </p>
+            </div>
+            <div
+              class="hidden md:flex items-center self-center text-brand-primary/30 dark:text-gray-700 flex-shrink-0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Article 6 -->
+        <div class="article-item fade-up d6" data-category="devlog">
+          <a
+            href="#"
+            class="article-card relative flex flex-col md:flex-row md:items-start gap-4 md:gap-8 py-7 border-b border-brand-primary/10 dark:border-gray-800 hover:bg-brand-primary/[0.02] dark:hover:bg-white/[0.02] transition-colors duration-200 pl-5 -ml-5 rounded-r-lg"
+          >
+            <div
+              class="flex-shrink-0 font-mono text-xs text-gray-400 dark:text-gray-600 w-28 pt-1"
+            >
+              Jan 30, 2026
+            </div>
+            <div class="flex-1">
+              <div class="flex flex-wrap gap-2 mb-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-wider text-brand-primary/60 dark:text-gray-500 bg-brand-primary/5 dark:bg-gray-800 px-2 py-0.5 rounded"
+                  >Devlog</span
+                >
+              </div>
+              <h2
+                class="text-base md:text-lg font-semibold text-brand-primary dark:text-gray-100 mb-1 leading-snug"
+              >
+                6 Months of Bootcamp: Honest Reflection
+              </h2>
+              <p
+                class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2"
+              >
+                I came from architecture and operations management. Six months
+                later I have two shipped projects and a lot of humility about
+                how much there is still to learn. Here's the honest version.
+              </p>
+            </div>
+            <div
+              class="hidden md:flex items-center self-center text-brand-primary/30 dark:text-gray-700 flex-shrink-0"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="2"
+                stroke="currentColor"
+                class="w-4 h-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </div>
+          </a>
+        </div>
+
+        <!-- Empty state (hidden by default) -->
+        <div
+          id="emptyState"
+          class="hidden py-16 text-center text-gray-400 dark:text-gray-600"
+        >
+          <p class="font-mono text-sm">// no articles in this category yet</p>
+        </div>
+      </div>
+
+      <hr
+        class="border-brand-primary/20 dark:border-gray-700 mt-16 mb-16 md:mt-24 md:mb-24 w-full"
+      />
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer
+      class="bg-brand-primary dark:bg-gray-900 text-white text-center py-4 md:py-6 border-t border-brand-primary/30 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] mt-auto"
+    >
+      <p class="text-sm md:text-base">
+        Copyright &copy; 2026 Arif Purnomo | All rights reserved
+      </p>
+    </footer>
+
+    <script>
+      // ── Dark mode ─────────────────────────────────────────────
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("theme-toggle");
+      const darkIcon = document.getElementById("theme-toggle-dark-icon");
+      const lightIcon = document.getElementById("theme-toggle-light-icon");
+      const KEY = "theme";
+
+      function applyTheme(isDark) {
+        if (isDark) {
+          html.classList.add("dark");
+          darkIcon.classList.remove("hidden");
+          lightIcon.classList.add("hidden");
+        } else {
+          html.classList.remove("dark");
+          lightIcon.classList.remove("hidden");
+          darkIcon.classList.add("hidden");
+        }
+      }
+
+      const saved = localStorage.getItem(KEY);
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      applyTheme(saved === "dark" || (!saved && prefersDark));
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = html.classList.contains("dark");
+        applyTheme(!isDark);
+        localStorage.setItem(KEY, !isDark ? "dark" : "light");
+      });
+
+      // ── Avatar fallback ───────────────────────────────────────
+      const avatar = document.getElementById("headerAvatar");
+      avatar.addEventListener("error", () => {
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+          <rect width="50" height="50" rx="25" fill="#1f2937"/>
+          <text x="25" y="26" font-family="sans-serif" font-size="17" font-weight="600"
+            fill="white" text-anchor="middle" dominant-baseline="middle">AP</text>
+        </svg>`;
+        avatar.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+        avatar.onerror = null;
+      });
+
+      // ── Category filter ───────────────────────────────────────
+      const chips = document.querySelectorAll(".chip");
+      const articles = document.querySelectorAll(".article-item");
+      const emptyState = document.getElementById("emptyState");
+
+      chips.forEach((chip) => {
+        chip.addEventListener("click", () => {
+          // Update active chip
+          chips.forEach((c) => c.classList.remove("active"));
+          chip.classList.add("active");
+
+          const filter = chip.dataset.filter;
+          let visible = 0;
+
+          articles.forEach((article) => {
+            const match =
+              filter === "all" || article.dataset.category === filter;
+            if (match) {
+              article.classList.remove("hidden");
+              visible++;
+            } else {
+              article.classList.add("hidden");
+            }
+          });
+
+          emptyState.classList.toggle("hidden", visible > 0);
+        });
+      });
+    </script>
   </body>
 </html>

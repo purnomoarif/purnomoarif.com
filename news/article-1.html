@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Bearmentor Graduation — Arif Purnomo</title>
+
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                light: "#f3f4f6",
+                dark: "#111827",
+                primary: "#1f2937",
+                primaryDark: "#4ade80",
+              },
+            },
+            fontFamily: {
+              sans: ["DM Sans", "system-ui", "sans-serif"],
+              mono: ["DM Mono", "monospace"],
+              display: ["DM Serif Display", "Georgia", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../style.css" />
+    <link rel="shortcut icon" href="../images/favicon.png" type="image/png" />
+
+    <style>
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fade-up {
+        opacity: 0;
+        animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      }
+      .d1 {
+        animation-delay: 0.07s;
+      }
+      .d2 {
+        animation-delay: 0.14s;
+      }
+      .d3 {
+        animation-delay: 0.22s;
+      }
+
+      /* ── Prose ── */
+      .prose p {
+        font-size: 0.975rem;
+        line-height: 1.9;
+        color: #374151;
+        margin-bottom: 1.4rem;
+        font-weight: 300;
+      }
+      .dark .prose p {
+        color: #9ca3af;
+      }
+
+      .prose strong {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .dark .prose strong {
+        color: #e5e7eb;
+      }
+
+      .prose h2 {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-top: 2.5rem;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+      }
+      .dark .prose h2 {
+        color: #f3f4f6;
+      }
+
+      .prose ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .prose ul li {
+        display: flex;
+        gap: 0.75rem;
+        font-size: 0.975rem;
+        line-height: 1.75;
+        color: #374151;
+        font-weight: 300;
+      }
+      .dark .prose ul li {
+        color: #9ca3af;
+      }
+      .prose ul li::before {
+        content: "–";
+        color: #1f2937;
+        flex-shrink: 0;
+        font-weight: 600;
+      }
+      .dark .prose ul li::before {
+        color: #4ade80;
+      }
+
+      .prose blockquote {
+        border-left: 3px solid #1f2937;
+        padding-left: 1.25rem;
+        margin: 1.75rem 0;
+        font-style: italic;
+        color: #6b7280;
+        font-size: 0.975rem;
+        line-height: 1.75;
+      }
+      .dark .prose blockquote {
+        border-color: #4ade80;
+        color: #6b7280;
+      }
+
+      .prose hr {
+        border: none;
+        border-top: 1px solid #e5e7eb;
+        margin: 2rem 0;
+      }
+      .dark .prose hr {
+        border-color: #374151;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-brand-light dark:bg-brand-dark text-brand-primary dark:text-gray-200 transition-colors duration-300 font-sans flex flex-col min-h-screen"
+  >
+    <div
+      class="flex flex-col flex-1 max-w-7xl mx-auto w-full px-6 md:px-12 py-8"
+    >
+      <!-- ── Header ── -->
+      <header
+        class="flex flex-col md:flex-row justify-between items-center mb-16 md:mb-20 w-full gap-6 md:gap-0"
+      >
+        <div
+          class="flex items-center gap-3 font-bold text-lg md:text-xl tracking-wider"
+        >
+          <img
+            id="headerAvatar"
+            src="/images/photo-profile.jpg"
+            alt="Photo profile"
+            class="w-[50px] h-[50px] object-cover rounded-full shadow-md"
+          />
+          <a
+            href="/"
+            class="hover:text-brand-primary dark:hover:text-brand-primaryDark transition"
+          >
+            PURNOMO ARIF
+          </a>
+        </div>
+
+        <nav>
+          <ul
+            class="flex flex-wrap justify-center gap-4 md:gap-6 text-sm md:text-base font-medium"
+          >
+            <li>
+              <a
+                href="/"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/about"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >About</a
+              >
+            </li>
+            <li>
+              <a
+                href="/news"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >News</a
+              >
+            </li>
+            <li>
+              <a
+                href="/contact"
+                class="hover:text-gray-500 dark:hover:text-brand-primaryDark transition"
+                >Contact</a
+              >
+            </li>
+          </ul>
+        </nav>
+
+        <div class="flex items-center gap-4 relative z-50">
+          <a
+            href="/resume"
+            class="bg-brand-primary text-white dark:bg-brand-primaryDark dark:text-gray-900 px-4 py-2 md:px-6 md:py-2 rounded-sm font-medium hover:opacity-90 transition text-sm md:text-base"
+            >Resume</a
+          >
+          <button
+            id="theme-toggle"
+            class="p-2 border border-brand-primary dark:border-gray-500 rounded-full hover:bg-brand-primary hover:text-white dark:hover:bg-brand-primaryDark dark:hover:text-gray-900 transition flex-shrink-0 flex items-center justify-center w-10 h-10"
+            aria-label="Toggle Dark Mode"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              class="hidden w-5 h-5 text-yellow-400"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              />
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              class="hidden w-5 h-5 text-gray-900 dark:text-gray-100"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- ── Article ── -->
+      <article class="w-full max-w-2xl mx-auto pb-20">
+        <!-- Back -->
+        <a
+          href="/news"
+          class="fade-up inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gray-400 dark:text-gray-600 hover:text-brand-primary dark:hover:text-brand-primaryDark transition mb-10"
+        >
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            class="w-3.5 h-3.5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.75 19.5L8.25 12l7.5-7.5"
+            />
+          </svg>
+          Back to News
+        </a>
+
+        <!-- Meta -->
+        <div class="fade-up d1 flex flex-wrap items-center gap-3 mb-5">
+          <span class="text-xs font-mono text-gray-400 dark:text-gray-600"
+            >May 20, 2026</span
+          >
+          <span
+            class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700"
+          ></span>
+          <span
+            class="text-[10px] font-bold uppercase tracking-wider text-brand-primary/60 dark:text-gray-500 bg-brand-primary/5 dark:bg-gray-800 px-2 py-0.5 rounded"
+          >
+            Devlog
+          </span>
+          <span
+            class="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700"
+          ></span>
+          <span class="text-xs font-mono text-gray-400 dark:text-gray-600"
+            >3 min read</span
+          >
+        </div>
+
+        <!-- Title -->
+        <h1
+          class="fade-up d1 font-display text-3xl sm:text-4xl font-bold tracking-tight text-brand-primary dark:text-gray-100 leading-tight mb-8"
+        >
+          Bearmentor Graduation: From Zero to Fullstack in 6 Months
+        </h1>
+
+        <hr
+          class="fade-up d2 border-brand-primary/10 dark:border-gray-800 mb-10"
+        />
+
+        <!-- ── Content — ganti bagian ini untuk artikel baru ── -->
+        <div class="prose fade-up d3">
+          <p>
+            Today, I am thrilled to share a milestone that means a great deal to
+            me. After more than six months of intensive learning at the
+            Bearmentor bootcamp, I have officially completed the Fullstack Web
+            Development program. To be honest, reaching this point felt like a
+            distant dream. Starting with zero experience in web development was
+            a significant challenge, but having the right guidance made
+            everything possible.
+          </p>
+
+          <p>
+            I would like to express my deepest gratitude to my incredible
+            mentors:
+            <strong>Bang M Haidar Hanif</strong>,
+            <strong>Bang Ben Nata</strong>, and
+            <strong>Bang Raditya Dwisatrio Santoso</strong>. Thank you for your
+            patience in guiding me and for providing such a solid foundation.
+          </p>
+
+          <p>
+            Congratulations also to my peers in Batch 8 and Batch 9, especially
+            <strong>Bang Endi Suwandi</strong>,
+            <strong>Bang Ammar Ismail Khocan</strong>, and
+            <strong>Bang Akhirudin Salasa</strong>. It has been a privilege to
+            know and collaborate with all of you, especially as we worked
+            side-by-side to bring our final project,
+            <strong>acaraga.com</strong>, to life. Our teamwork was truly one of
+            the highlights of this journey.
+          </p>
+
+          <blockquote>
+            I realize that graduation is not the finish line — it's where the
+            real journey begins.
+          </blockquote>
+
+          <p>
+            I now feel ready and equipped with a solid foothold to forge my path
+            in the tech industry. Onwards and upwards! 🚀
+          </p>
+        </div>
+        <!-- ── Akhir content ── -->
+
+        <hr class="border-brand-primary/10 dark:border-gray-800 mt-12 mb-10" />
+
+        <!-- Author -->
+        <div class="flex items-center gap-4">
+          <img
+            id="authorAvatar"
+            src="/images/photo-profile.jpg"
+            alt="Arif Purnomo"
+            class="w-12 h-12 rounded-full object-cover border-2 border-brand-primary/10 dark:border-gray-700"
+          />
+          <div>
+            <p
+              class="text-sm font-semibold text-brand-primary dark:text-gray-200"
+            >
+              Purnomo Arif
+            </p>
+            <p class="text-xs text-gray-400 dark:text-gray-600 font-mono">
+              Fullstack Web Developer
+            </p>
+          </div>
+        </div>
+
+        <!-- Back bottom -->
+        <div class="mt-12">
+          <a
+            href="/news"
+            class="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gray-400 dark:text-gray-600 hover:text-brand-primary dark:hover:text-brand-primaryDark transition"
+          >
+            <svg
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-3.5 h-3.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+            Back to all articles
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer
+      class="bg-brand-primary dark:bg-gray-900 text-white text-center py-4 md:py-6 border-t border-brand-primary/30 w-full shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] mt-auto"
+    >
+      <p class="text-sm md:text-base">
+        Copyright &copy; 2026 Arif Purnomo | All rights reserved
+      </p>
+    </footer>
+
+    <script>
+      // ── Dark mode ─────────────────────────────────────────────
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("theme-toggle");
+      const darkIcon = document.getElementById("theme-toggle-dark-icon");
+      const lightIcon = document.getElementById("theme-toggle-light-icon");
+      const KEY = "theme";
+
+      function applyTheme(isDark) {
+        if (isDark) {
+          html.classList.add("dark");
+          darkIcon.classList.remove("hidden");
+          lightIcon.classList.add("hidden");
+        } else {
+          html.classList.remove("dark");
+          lightIcon.classList.remove("hidden");
+          darkIcon.classList.add("hidden");
+        }
+      }
+
+      const saved = localStorage.getItem(KEY);
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      applyTheme(saved === "dark" || (!saved && prefersDark));
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = html.classList.contains("dark");
+        applyTheme(!isDark);
+        localStorage.setItem(KEY, !isDark ? "dark" : "light");
+      });
+
+      // ── Avatar fallback ───────────────────────────────────────
+      ["headerAvatar", "authorAvatar"].forEach((id) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        el.addEventListener("error", () => {
+          const s = id === "authorAvatar" ? 48 : 50;
+          const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${s}" height="${s}" viewBox="0 0 ${s} ${s}">
+            <rect width="${s}" height="${s}" rx="${s / 2}" fill="#1f2937"/>
+            <text x="${s / 2}" y="${s / 2 + 1}" font-family="sans-serif" font-size="${Math.round(s * 0.34)}"
+              font-weight="600" fill="white" text-anchor="middle" dominant-baseline="middle">AP</text>
+          </svg>`;
+          el.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+          el.onerror = null;
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -16,7 +16,7 @@ Hi, This is My Personal website. A place to show my profile, projects, and exper
 
 ## Links
 
-- Live Preview : [purnomoarif.com] (https://purnomoarif.com/)
+- Live Preview : [[purnomoarif.com] (https://purnomoarif.com/)](https://purnomoarif.netlify.app/)
 - Github : <https://github.com/purnomoarif>
 
 Social Media:
